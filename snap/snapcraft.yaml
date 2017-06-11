@@ -12,6 +12,8 @@ apps:
   dash:
     command: bin/dashd -disablewallet
     daemon: simple
+    plugs:
+     - network-bind
 
 parts:
   dash:
