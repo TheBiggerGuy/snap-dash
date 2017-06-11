@@ -10,7 +10,7 @@ confinement: devmode # use 'strict' once you have the right plugs and slots
 
 apps:
   dash:
-    command: bin/dashd -disablewallet
+    command: 'bin/dashd -disablewallet -datadir="${SNAP_USER_COMMON}"'
     daemon: simple
     plugs:
      - network-bind
