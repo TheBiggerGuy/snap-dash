@@ -1,18 +1,20 @@
 
-name: snap-dash # you probably want to 'snapcraft register <name>'
-version: '0.0.1'
+name: snap-dash
+version: '0.0.2'
 summary: Dash Coin node as a Snap package
 description: |
-  Dash Coin node as a Snap package
+  A full Dash coin node to help the Dash network. This has the wallet disabled
+  and is just for helping decentralise the Dash network.
 
-grade: devel
-confinement: devmode # use 'strict' once you have the right plugs and slots
+grade: stable
+confinement: strict
 
 apps:
   dash:
     command: 'bin/dashd -disablewallet -datadir="${SNAP_USER_COMMON}"'
     daemon: simple
     plugs:
+     - network
      - network-bind
 
 parts:
