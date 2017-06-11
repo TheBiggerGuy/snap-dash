@@ -16,7 +16,10 @@ apps:
 parts:
   dash:
     plugin: autotools
-    source: https://github.com/dashpay/dash/archive/v0.12.1.5.tar.gz
+    source: https://github.com/dashpay/dash.git
+    source-type: git
+    source-branch: v0.12.1.x
+    source-depth: 1
     configflags:
      - "--disable-wallet"
      - "--disable-tests"
@@ -24,7 +27,9 @@ parts:
      - "--disable-bench"
      - "--disable-ccache"
      - "--disable-zmq"
+     - "--without-miniupnpc"
      - "--with-daemon"
+     - "--enable-hardening"
     build-packages:
      - build-essential
      - libtool
@@ -34,8 +39,6 @@ parts:
      - libssl-dev
      - libevent-dev
      - bsdmainutils
-     - libdb-dev
-     - libdb++-dev
      - libboost-system-dev
      - libboost-filesystem-dev
      - libboost-chrono-dev
