@@ -10,7 +10,7 @@ confinement: devmode # use 'strict' once you have the right plugs and slots
 
 apps:
   dash:
-    command: bin/dashd
+    command: bin/dashd -disablewallet
     daemon: simple
 
 parts:
@@ -21,13 +21,20 @@ parts:
     source-branch: v0.12.1.x
     source-depth: 1
     configflags:
-     - "--disable-wallet"
+     # Disable wallet at compile time is broken so do it at runtime
+     # https://github.com/dashpay/dash/issues/1357
+     #- "--disable-wallet"
+     - "--with-incompatible-bdb"
+
+     # Disable as much as possible
      - "--disable-tests"
      - "--disable-gui-tests"
      - "--disable-bench"
      - "--disable-ccache"
      - "--disable-zmq"
      - "--without-miniupnpc"
+
+     # Enable needed/security things
      - "--with-daemon"
      - "--enable-hardening"
     build-packages:
@@ -45,3 +52,5 @@ parts:
      - libboost-program-options-dev
      - libboost-test-dev
      - libboost-thread-dev
+     - libdb-dev
+     - libdb++-dev
